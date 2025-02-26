@@ -24,7 +24,7 @@ const Navbar = () => {
                 <CreateProjectform/>
             </DialogContent>
         </Dialog>
-        <Button variant="ghost">
+        <Button onClick={()=>navigate("/upgrade_plan")} variant="ghost">
             Upgrade
         </Button>
         </div>
