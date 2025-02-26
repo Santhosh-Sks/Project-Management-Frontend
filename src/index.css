@@ -7,6 +7,11 @@
 
 @layer base {
   :root {
+    width: 100%;
+    margin: 0;
+    text-align: left;
+    
+    
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
@@ -63,7 +68,10 @@
 }
 
 
-
+body {
+  margin: 0;
+  padding: 0;
+}
 
 
 @layer base {
@@ -74,12 +82,6 @@
     @apply bg-background dark text-foreground;
   }
 }
-
-
-
-
-
-
 
 
 
