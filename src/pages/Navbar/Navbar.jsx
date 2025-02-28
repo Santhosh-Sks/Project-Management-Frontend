@@ -5,9 +5,18 @@ import CreateProjectform from '../Project/CreateProjectform'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { PersonIcon } from '@radix-ui/react-icons'
 import { useNavigate } from 'react-router-dom'
+import { logout } from '@/Redux/Auth/Action'
+import { store } from '@/Redux/Store'
+import { useDispatch, useSelector } from 'react-redux';
 
 const Navbar = () => {
     const navigate = useNavigate();
+    const user = useSelector((state) => state.auth.user);
+    const dispatch = useDispatch();
+
+    const handleLogOut = ()=>{
+        dispatch(logout());
+    }
   return (
     <div className='border-b py-4 px-5 flex items-center justify-between'>
 
@@ -28,19 +37,19 @@ const Navbar = () => {
             Upgrade
         </Button>
         </div>
-        <div className='flex gap-3 items-center'>
-            <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                    <Button variant="outline" size="icon" className="rounded-full border-2 border-gray-100">
-                        <PersonIcon/>
-                    </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                    <DropdownMenuItem>LogOut</DropdownMenuItem>
-                </DropdownMenuContent>
-            </DropdownMenu>
-            <p>User</p>
-        </div>
+        <div className="flex gap-3 items-center">
+        <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="icon" className="rounded-full border-2 border-gray-100">
+                    <PersonIcon />
+                </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+                <DropdownMenuItem onClick={handleLogOut}>LogOut</DropdownMenuItem>
+            </DropdownMenuContent>
+        </DropdownMenu>
+        <p>{user ? user.fullName : "Guest"}</p>
+    </div>
     </div>
     
   )
